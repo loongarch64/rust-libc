@@ -147,27 +147,27 @@ s! {
                    any(target_pointer_width = "32",
                        target_arch = "x86_64", target_arch = "powerpc64",
                        target_arch = "mips64", target_arch = "s390x",
-                       target_arch = "sparc64",
+                       target_arch = "sparc64", target_arch = "loongarch64",
                        all(target_arch = "aarch64", target_env = "musl"))),
                repr(align(4)))]
     #[cfg_attr(all(feature = "align",
                    not(any(target_pointer_width = "32",
                            target_arch = "x86_64", target_arch = "powerpc64",
                            target_arch = "mips64", target_arch = "s390x",
-                           target_arch = "sparc64",
+                           target_arch = "sparc64", target_arch = "loongarch64",
                            all(target_arch = "aarch64", target_env = "musl")))),
                repr(align(8)))]
     pub struct pthread_mutexattr_t {
         #[cfg(all(not(features = "align"),
                   any(target_arch = "x86_64", target_arch = "powerpc64",
                       target_arch = "mips64", target_arch = "s390x",
-                      target_arch = "sparc64",
+                      target_arch = "sparc64", target_arch = "loongarch64",
                       all(target_arch = "aarch64", target_env = "musl"))))]
         __align: [::c_int; 0],
         #[cfg(all(not(features = "align"),
                   not(any(target_arch = "x86_64", target_arch = "powerpc64",
                           target_arch = "mips64", target_arch = "s390x",
-                          target_arch = "sparc64",
+                          target_arch = "sparc64", target_arch = "loongarch64",
                           all(target_arch = "aarch64", target_env = "musl")))))]
         __align: [::c_long; 0],
         size: [u8; __SIZEOF_PTHREAD_MUTEXATTR_T],
