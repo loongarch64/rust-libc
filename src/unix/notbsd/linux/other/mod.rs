@@ -977,6 +977,7 @@ cfg_if! {
         pub use self::b32::*;
     } else if #[cfg(any(target_arch = "x86_64",
                         target_arch = "aarch64",
+                        target_arch = "loongarch64",
                         target_arch = "powerpc64",
                         target_arch = "sparc64"))] {
         mod b64;
