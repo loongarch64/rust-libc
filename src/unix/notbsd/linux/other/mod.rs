@@ -40,22 +40,26 @@ s! {
         pub ut_exit: __exit_status,
 
         #[cfg(any(target_arch = "aarch64",
+                  target_arch = "loongarch64",
                   target_arch = "sparc64",
                   all(target_pointer_width = "32",
                       not(target_arch = "x86_64"))))]
         pub ut_session: ::c_long,
         #[cfg(any(target_arch = "aarch64",
+                  target_arch = "loongarch64",
                   target_arch = "sparc64",
                   all(target_pointer_width = "32",
                       not(target_arch = "x86_64"))))]
         pub ut_tv: ::timeval,
 
         #[cfg(not(any(target_arch = "aarch64",
+                      target_arch = "loongarch64",
                       target_arch = "sparc64",
                       all(target_pointer_width = "32",
                           not(target_arch = "x86_64")))))]
         pub ut_session: ::int32_t,
         #[cfg(not(any(target_arch = "aarch64",
+                      target_arch = "loongarch64",
                       target_arch = "sparc64",
                       all(target_pointer_width = "32",
                           not(target_arch = "x86_64")))))]
@@ -698,7 +702,10 @@ cfg_if! {
         pub const NFT_MSG_GETOBJ: ::c_int = 19;
         pub const NFT_MSG_DELOBJ: ::c_int = 20;
         pub const NFT_MSG_GETOBJ_RESET: ::c_int = 21;
+        #[cfg(not(target_arch = "loongarch64"))]
         pub const NFT_MSG_MAX: ::c_int = 22;
+        #[cfg(any(target_arch = "loongarch64"))]
+        pub const NFT_MSG_MAX: ::c_int = 25;
     } else {
         pub const NFT_MSG_MAX: ::c_int = 18;
     }
@@ -917,6 +924,7 @@ cfg_if! {
         pub use self::b32::*;
     } else if #[cfg(any(target_arch = "x86_64",
                         target_arch = "aarch64",
+                        target_arch = "loongarch64",
                         target_arch = "powerpc64",
                         target_arch = "sparc64"))] {
         mod b64;

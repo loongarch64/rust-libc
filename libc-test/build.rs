@@ -7,6 +7,7 @@ use std::env;
 fn main() {
     let target = env::var("TARGET").unwrap();
     let aarch64 = target.contains("aarch64");
+    let loongarch64 = target.contains("loongarch64");
     let i686 = target.contains("i686");
     let x86_64 = target.contains("x86_64");
     let x32 = target.ends_with("gnux32");
@@ -131,7 +132,7 @@ fn main() {
     }
 
     if android {
-        if !aarch64 && !x86_64 {
+        if !aarch64 && !loongarch64 && !x86_64 {
             // time64_t is not define for aarch64 and x86_64
             // If included it will generate the error 'Your time_t is already 64-bit'
             cfg.header("time64.h");
@@ -767,7 +768,7 @@ fn main() {
             "setpriority" | "personality" if android || solaris => true,
             // In Android 64 bits, these functions have been fixed since unified headers.
             // Ignore these until next major version.
-            "bind" | "writev" | "readv" | "sendmsg" | "recvmsg" if android && (aarch64 || x86_64) => true,
+            "bind" | "writev" | "readv" | "sendmsg" | "recvmsg" if android && (aarch64 || loongarch64 || x86_64) => true,
 
             // signal is defined with sighandler_t, so ignore
             "signal" if solaris => true,

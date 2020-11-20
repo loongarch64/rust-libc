@@ -33,6 +33,9 @@
 #![cfg_attr(all(target_os = "linux", target_arch = "aarch64"), doc(
     html_root_url = "https://rust-lang.github.io/libc/aarch64-unknown-linux-gnu"
 ))]
+#![cfg_attr(all(target_os = "linux", target_arch = "loongarch64"), doc(
+    html_root_url = "https://rust-lang.github.io/libc/loongarch64-unknown-linux-gnu"
+))]
 #![cfg_attr(all(target_os = "linux", target_env = "musl"), doc(
     html_root_url = "https://rust-lang.github.io/libc/x86_64-unknown-linux-musl"
 ))]
