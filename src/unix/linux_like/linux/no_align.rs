@@ -4,6 +4,7 @@ macro_rules! expand_align {
             pub struct pthread_mutexattr_t {
                 #[cfg(any(target_arch = "x86_64",
                           target_arch = "powerpc64",
+                          target_arch = "loongarch64",
                           target_arch = "mips64",
                           target_arch = "s390x",
                           target_arch = "sparc64",
@@ -14,6 +15,7 @@ macro_rules! expand_align {
                 __align: [::c_int; 0],
                 #[cfg(not(any(target_arch = "x86_64",
                               target_arch = "powerpc64",
+                              target_arch = "loongarch64",
                               target_arch = "mips64",
                               target_arch = "s390x",
                               target_arch = "sparc64",
