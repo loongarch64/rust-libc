@@ -4,8 +4,8 @@ use pthread_mutex_t;
 
 pub type c_long = i64;
 pub type c_ulong = u64;
-pub type c_char = u8;
-pub type wchar_t = u32;
+pub type c_char = i8;
+pub type wchar_t = i32;
 pub type nlink_t = u32;
 pub type blksize_t = i32;
 pub type suseconds_t = i64;
@@ -143,9 +143,9 @@ s! {
         pub gid: ::gid_t,
         pub cuid: ::uid_t,
         pub cgid: ::gid_t,
-        pub mode: ::c_uint,
-        pub __seq: ::c_ushort,
+        pub mode: ::c_ushort,
         __pad1: ::c_ushort,
+        pub __seq: ::c_ushort,
         __unused1: ::c_ulong,
         __unused2: ::c_ulong
     }
@@ -476,9 +476,9 @@ pub const EPOLL_CLOEXEC: ::c_int = 0x80000;
 
 pub const EFD_CLOEXEC: ::c_int = 0x80000;
 
-pub const __SIZEOF_PTHREAD_CONDATTR_T: usize = 8;
-pub const __SIZEOF_PTHREAD_MUTEX_T: usize = 48;
-pub const __SIZEOF_PTHREAD_MUTEXATTR_T: usize = 8;
+pub const __SIZEOF_PTHREAD_CONDATTR_T: usize = 4;
+pub const __SIZEOF_PTHREAD_MUTEX_T: usize = 40;
+pub const __SIZEOF_PTHREAD_MUTEXATTR_T: usize = 4;
 
 align_const! {
     pub const PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP: ::pthread_mutex_t =
@@ -507,9 +507,9 @@ align_const! {
         };
 }
 
-pub const O_DIRECT: ::c_int = 0x10000;
-pub const O_DIRECTORY: ::c_int = 0x4000;
-pub const O_NOFOLLOW: ::c_int = 0x8000;
+pub const O_DIRECT: ::c_int = 0x4000;
+pub const O_DIRECTORY: ::c_int = 0x10000;
+pub const O_NOFOLLOW: ::c_int = 0x20000;
 
 pub const MAP_LOCKED: ::c_int = 0x02000;
 pub const MAP_NORESERVE: ::c_int = 0x04000;
@@ -531,8 +531,8 @@ pub const FIONBIO: ::c_ulong = 0x5421;
 pub const MCL_CURRENT: ::c_int = 0x0001;
 pub const MCL_FUTURE: ::c_int = 0x0002;
 
-pub const SIGSTKSZ: ::size_t = 16384;
-pub const MINSIGSTKSZ: ::size_t = 5120;
+pub const SIGSTKSZ: ::size_t = 8192;
+pub const MINSIGSTKSZ: ::size_t = 2048;
 pub const CBAUD: ::tcflag_t = 0o0010017;
 pub const TAB1: ::tcflag_t = 0x00000800;
 pub const TAB2: ::tcflag_t = 0x00001000;
@@ -692,7 +692,6 @@ pub const SYS_mkdirat: ::c_long = 34;
 pub const SYS_unlinkat: ::c_long = 35;
 pub const SYS_symlinkat: ::c_long = 36;
 pub const SYS_linkat: ::c_long = 37;
-pub const SYS_renameat: ::c_long = 38;
 pub const SYS_umount2: ::c_long = 39;
 pub const SYS_mount: ::c_long = 40;
 pub const SYS_pivot_root: ::c_long = 41;
