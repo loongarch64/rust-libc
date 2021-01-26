@@ -18,6 +18,11 @@ Raw FFI bindings to platform libraries like libc.
 [dependencies]
 rustc-std-workspace-core = { version = "1.0.0", optional = true }
 
+[patch.crates-io]
+cc = { git = "http://gitlab.gen.cn/community/rust-cc", branch = "dev-1.0.66" }
+libc = { git = "http://gitlab.gen.cn/community/rust-libc", branch = "b0.2.82" }
+ctest = { git = "http://gitlab.gen.cn/community/rust-ctest", branch = "dev-master" }
+
 [features]
 default = ["std"]
 std = []
