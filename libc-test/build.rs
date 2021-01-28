@@ -2228,6 +2228,7 @@ fn test_linux(target: &str) {
     let x32 = target.contains("x32");
     let x86_32 = target.contains("i686");
     let x86_64 = target.contains("x86_64");
+    let loongarch64 = target.contains("loongarch64");
     let aarch64_musl = target.contains("aarch64") && musl;
     let gnuabihf = target.contains("gnueabihf");
 
@@ -2585,6 +2586,12 @@ fn test_linux(target: &str) {
             // FIXME: the glibc version used by the Sparc64 build jobs
             // which use Debian 10.0 is too old.
             "statx" if sparc64 => true,
+
+            // FIXME: the glibc version used by the Loongarch64 build jobs
+            // which use Debian 10.0 is too old.
+            "fscanf" if loongarch64 => true,
+            "scanf" if loongarch64 => true,
+            "sscanf" if loongarch64 => true,
 
             // FIXME: Deprecated since glibc 2.30. Remove fn once upstream does.
             "sysctl" if gnu => true,
