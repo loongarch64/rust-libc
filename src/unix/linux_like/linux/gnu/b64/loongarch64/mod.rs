@@ -4,7 +4,7 @@ use pthread_mutex_t;
 
 pub type c_long = i64;
 pub type c_ulong = u64;
-pub type c_char = u8;
+pub type c_char = i8;
 pub type wchar_t = u32;
 pub type nlink_t = u32;
 pub type blksize_t = i32;
